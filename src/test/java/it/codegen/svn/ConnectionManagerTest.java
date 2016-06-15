@@ -8,8 +8,12 @@ import org.tmatesoft.svn.core.SVNLogEntry;
 import org.tmatesoft.svn.core.SVNLogEntryPath;
 import org.tmatesoft.svn.core.SVNURL;
 import org.tmatesoft.svn.core.auth.ISVNAuthenticationManager;
+import org.tmatesoft.svn.core.internal.util.SVNPathUtil;
+import org.tmatesoft.svn.core.internal.wc.patch.SVNPatch;
+import org.tmatesoft.svn.core.internal.wc.patch.SVNPatchTarget;
 import org.tmatesoft.svn.core.io.SVNRepository;
 import org.tmatesoft.svn.core.io.SVNRepositoryFactory;
+import org.tmatesoft.svn.core.io.diff.SVNDeltaProcessor;
 import org.tmatesoft.svn.core.wc.ISVNOptions;
 import org.tmatesoft.svn.core.wc.SVNClientManager;
 import org.tmatesoft.svn.core.wc.SVNDiffClient;
@@ -17,6 +21,7 @@ import org.tmatesoft.svn.core.wc.SVNRevision;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.PrintStream;
 import java.util.Collection;
 import java.util.Iterator;
@@ -36,7 +41,7 @@ public class ConnectionManagerTest extends TestCase
     long startRevision = 571752;
     //        long endRevision = 528515;
     //    long endRevision = 549413;
-    long endRevision = 571756;
+    long endRevision = 571753;
 
     @Test public void testConnection()
     {
@@ -52,11 +57,28 @@ public class ConnectionManagerTest extends TestCase
         }
     }
 
+    public void testPatch()
+    {
+        try
+        {
+            File original = new File("E:\\FDM_27022010_BRANCH_MAVEN\\travelboxv3\\codegen\\DataXmlFactory\\src\\it\\codegen\\tbx\\documentmanager\\services\\dataxmlfactory\\codegen\\xmlbean\\Voucher\\VoucherMainXmlBean.java");
+            File file = new File( "d:/final_patch.patch" );
+            SVNClientManager clientManager = getSVNClientManager();
+            clientManager.getDiffClient().doPatch( original, file, true, 1 );
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace();
+        }
+
+    }
+
     @Test public void testDoDiff()
     {
 
         try
         {
+
             SVNClientManager clientManager = getSVNClientManager();
             SVNDiffClient diffClient = clientManager.getDiffClient();
 
