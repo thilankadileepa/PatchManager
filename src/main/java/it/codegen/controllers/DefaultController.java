@@ -1,6 +1,6 @@
 package it.codegen.controllers;
 
-import it.codegen.SVNPatchManager;
+import it.codegen.PatchManager;
 import it.codegen.criteria.PatchSearchCriteria;
 import it.codegen.data.Patch;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +17,7 @@ import java.util.List;
 @Controller
 public class DefaultController
 {
-    @Autowired
-    SVNPatchManager svnPatchManager;
+    @Autowired PatchManager svnPatchManager;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(ModelMap map) {

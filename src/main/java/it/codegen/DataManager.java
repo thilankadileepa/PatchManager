@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by thilanka on 6/20/2016.
  */
-public interface SVNPatchManager
+public interface DataManager
 {
     public List<Patch> searchPatches( PatchSearchCriteria criteria);
 }

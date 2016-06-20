@@ -1,7 +1,7 @@
 package it.codegen.config.jdbc;
 
 import it.codegen.config.DataConfig;
-import it.codegen.config.DataManager;
+import it.codegen.DataManager;
 import it.codegen.criteria.PatchSearchCriteria;
 import it.codegen.data.Patch;
 import org.springframework.beans.factory.annotation.Autowired;

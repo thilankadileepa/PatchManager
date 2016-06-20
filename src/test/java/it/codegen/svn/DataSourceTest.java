@@ -1,8 +1,7 @@
 package it.codegen.svn;
 
 import it.codegen.config.AppConfig;
-import it.codegen.config.DataManager;
-import it.codegen.config.jdbc.MySqlJdbcDataManager;
+import it.codegen.DataManager;
 import it.codegen.criteria.PatchSearchCriteria;
 import it.codegen.data.Patch;
 import junit.framework.TestCase;

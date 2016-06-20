@@ -1,8 +1,9 @@
 package it.codegen.config;
 
-import it.codegen.SVNPatchManager;
+import it.codegen.DataManager;
+import it.codegen.PatchManager;
 import it.codegen.config.jdbc.MySqlJdbcDataManager;
-import it.codegen.impl.SVNPatchManagerImpl;
+import it.codegen.impl.PatchManagerImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -41,8 +42,8 @@ public class Config extends WebMvcConfigurerAdapter
     }
 
     @Bean
-    public SVNPatchManager svnPatchManager()
+    public PatchManager svnPatchManager()
     {
-        return new SVNPatchManagerImpl();
+        return new PatchManagerImpl();
     }
 }
