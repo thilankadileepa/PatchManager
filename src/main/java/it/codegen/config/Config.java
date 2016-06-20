@@ -1,5 +1,8 @@
 package it.codegen.config;
 
+import it.codegen.SVNPatchManager;
+import it.codegen.config.jdbc.MySqlJdbcDataManager;
+import it.codegen.impl.SVNPatchManagerImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -29,5 +32,17 @@ public class Config extends WebMvcConfigurerAdapter
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+
+    @Bean
+    public DataManager dataManager()
+    {
+        return new MySqlJdbcDataManager();
+    }
+
+    @Bean
+    public SVNPatchManager svnPatchManager()
+    {
+        return new SVNPatchManagerImpl();
     }
 }

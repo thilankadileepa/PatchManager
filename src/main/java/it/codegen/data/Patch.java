@@ -1,5 +1,7 @@
 package it.codegen.data;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -17,6 +19,11 @@ public class Patch
 
     private Date date;
 
+    public void load( ResultSet rs) throws SQLException
+    {
+        this.setAuthor( rs.getString( "author" ) );
+        this.setProject( rs.getString( "project" ) );
+    }
 
     public long getNumber()
     {
@@ -96,5 +103,19 @@ public class Patch
     public void setDate( Date date )
     {
         this.date = date;
+    }
+
+    @Override public String toString()
+    {
+        return "Patch{" +
+                "number=" + number +
+                ", project='" + project + '\'' +
+                ", author='" + author + '\'' +
+                ", branch='" + branch + '\'' +
+                ", revision='" + revision + '\'' +
+                ", bug='" + bug + '\'' +
+                ", comment='" + comment + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

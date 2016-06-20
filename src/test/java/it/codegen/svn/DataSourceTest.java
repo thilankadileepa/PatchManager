@@ -2,8 +2,11 @@ package it.codegen.svn;
 
 import it.codegen.config.AppConfig;
 import it.codegen.config.DataManager;
+import it.codegen.config.jdbc.MySqlJdbcDataManager;
+import it.codegen.criteria.PatchSearchCriteria;
 import it.codegen.data.Patch;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import java.util.List;
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = AppConfig.class)
+@Ignore
 public class DataSourceTest extends TestCase
 {
     @Autowired
@@ -27,7 +31,7 @@ public class DataSourceTest extends TestCase
 
     @Test public void testData()
     {
-        List<Patch> patches = dataManager.searchPatches();
+        List<Patch> patches = dataManager.searchPatches(new PatchSearchCriteria());
         assertTrue( patches.size() > 0 );
     }
 }

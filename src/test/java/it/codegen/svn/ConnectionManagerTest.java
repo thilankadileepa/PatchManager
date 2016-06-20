@@ -1,6 +1,7 @@
 package it.codegen.svn;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.tmatesoft.svn.core.SVNDepth;
 import org.tmatesoft.svn.core.SVNException;
@@ -29,6 +30,7 @@ import java.util.Iterator;
 /**
  * Created by thilanka on 5/9/2016.
  */
+@Ignore
 public class ConnectionManagerTest extends TestCase
 {
     //    private static String svnUrl = "svn+ssh://192.168.0.6/usr/local/svnroot/branches/FDM_26062015_BRANCH/travelboxv3/codegen";
