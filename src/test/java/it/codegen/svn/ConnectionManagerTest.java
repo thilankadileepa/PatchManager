@@ -20,6 +20,7 @@ import org.tmatesoft.svn.core.wc.SVNClientManager;
 import org.tmatesoft.svn.core.wc.SVNDiffClient;
 import org.tmatesoft.svn.core.wc.SVNRevision;
 import org.tmatesoft.svn.core.wc.SVNWCUtil;
+import org.tmatesoft.svn.core.wc2.SvnOperationFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -43,7 +44,7 @@ public class ConnectionManagerTest extends TestCase
     long startRevision = 571752;
     //        long endRevision = 528515;
     //    long endRevision = 549413;
-    long endRevision = 571753;
+    long endRevision = 571757;
 
     @Test public void testConnection()
     {
@@ -147,6 +148,41 @@ public class ConnectionManagerTest extends TestCase
         }
     }
 
+    @Test public void testCreatePatchBetweenRevisions()
+    {
+        try
+        {
+            SVNRepository repository = SVNRepositoryFactory.create( SVNURL.parseURIEncoded( svnUrl ) );
+            ISVNAuthenticationManager authManager = SVNWCUtil.createDefaultAuthenticationManager( name, password );
+            repository.setAuthenticationManager( authManager );
+
+            SVNClientManager clientManager = getSVNClientManager();
+            SVNDiffClient diffClient = clientManager.getDiffClient();
+
+
+            SVNRevision sR = SVNRevision.create( startRevision );
+            SVNRevision eR = SVNRevision.create( endRevision );
+
+            StringBuilder sb = new StringBuilder();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            PrintStream result = new PrintStream( baos );
+            diffClient.doDiff( SVNURL.parseURIEncoded( svnUrl ), eR, sR, eR, SVNDepth.INFINITY, true, result );
+            String resultString = baos.toString();
+
+
+
+            System.out.println( "------------------- FINAL Patch ---------------" );
+            System.out.println( sb.toString() );
+            System.out.println( "--------------------END FINAL Patch --------------" );
+
+        }
+        catch( Exception e )
+        {
+            e.printStackTrace();
+            fail();
+        }
+    }
+
     @Test public void testCreatePatch()
     {
 
@@ -164,6 +200,7 @@ public class ConnectionManagerTest extends TestCase
             SVNRevision eR = SVNRevision.create( endRevision );
 
             Collection logEntries = repository.log( new String[]{""}, null, startRevision, endRevision, true, true );
+
 
             StringBuilder sb = new StringBuilder();
             ByteArrayOutputStream baos = null;

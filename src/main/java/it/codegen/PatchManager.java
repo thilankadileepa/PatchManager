@@ -13,5 +13,5 @@ public interface PatchManager
 {
     public List<Patch> searchPatches( PatchSearchCriteria criteria);
 
-    public List<PatchResult> createPatches(List<String> revisions);
+    public List<PatchResult> createPatches(String branch ,List<Patch> patches);
 }

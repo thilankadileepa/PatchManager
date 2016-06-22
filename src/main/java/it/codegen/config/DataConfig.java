@@ -13,7 +13,8 @@ import javax.sql.DataSource;
 /**
  * Created by thilanka on 5/24/2016.
  */
-@Configuration @ComponentScan({"it.codegen"}) @PropertySource(value = {"classpath:application.properties"}) public class DataConfig
+@Configuration @ComponentScan({"it.codegen"}) @PropertySource(value = {"classpath:application.properties"})
+public class DataConfig
 {
     @Resource private Environment environment;
 
@@ -28,4 +29,27 @@ import javax.sql.DataSource;
         return dataSource;
     }
 
+    @Bean
+    public String getSvnBase()
+    {
+        return  environment.getRequiredProperty( "svn.base" );
+    }
+
+    @Bean
+    public String getUserName()
+    {
+        return  environment.getRequiredProperty( "svn.username" );
+    }
+
+    @Bean
+    public String getPassword()
+    {
+        return  environment.getRequiredProperty( "svn.password" );
+    }
+
+    @Bean
+    public String getPatchFileBase()
+    {
+        return  environment.getRequiredProperty( "patch.path" );
+    }
 }

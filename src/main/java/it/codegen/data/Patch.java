@@ -10,14 +10,38 @@ import java.util.Date;
 public class Patch
 {
     private long number;
+    private long revision;
+
     private String project;
     private String author;
     private String branch;
-    private String revision;
     private String bug;
     private String comment;
 
     private Date date;
+
+    public Patch()
+    {
+        super();
+    }
+
+    public Patch( long number, long revision )
+    {
+        this.number = number;
+        this.revision = revision;
+    }
+
+    public Patch( long number, long revision, String project, String author, String branch, String bug, String comment, Date date )
+    {
+        this.number = number;
+        this.revision = revision;
+        this.project = project;
+        this.author = author;
+        this.branch = branch;
+        this.bug = bug;
+        this.comment = comment;
+        this.date = date;
+    }
 
     public void load( ResultSet rs) throws SQLException
     {
@@ -65,12 +89,12 @@ public class Patch
         this.branch = branch;
     }
 
-    public String getRevision()
+    public long getRevision()
     {
         return revision;
     }
 
-    public void setRevision( String revision )
+    public void setRevision( long revision )
     {
         this.revision = revision;
     }
